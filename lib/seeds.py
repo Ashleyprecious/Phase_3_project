@@ -7,3 +7,10 @@ Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
+
+def seed_data():
+
+    if session.query(ModelAgency).count() > 0:
+        print("Seed data already exists. Skipping.")
+        return
+
