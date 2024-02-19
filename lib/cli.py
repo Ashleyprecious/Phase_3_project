@@ -47,3 +47,12 @@ def get_models_under_agency(agency_name):
         .all()
     )
     return models
+
+def get_models_for_magazine(magazine_name):
+    models = (
+        session.query(Model)
+        .join(LocalMagazine)
+        .filter(LocalMagazine.name == magazine_name)
+        .all()
+    )
+    return models
