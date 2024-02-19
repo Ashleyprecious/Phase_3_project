@@ -36,6 +36,5 @@ def seed_data():
     session.add_all([magazine1, magazine2,magazine3])
     session.commit()
 
-
-
-
+if _name_ == '_main_':
+    seed_data()
