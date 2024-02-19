@@ -17,3 +17,14 @@ def list_models_under_agency():
             print(f"Model ID: {model.id}, Name: {model.first_name} {model.last_name}")
     else:
         print(f"No models found for Model Agency {agency_name}")
+
+def list_models_for_magazine():
+    magazine_name = input("Enter the Magazine's name: ")
+    models = get_models_for_magazine(magazine_name)
+
+    if models:
+        print(f"Models for {magazine_name}:")
+        for model in models:
+            print(f"Model ID: {model.id}, Name: {model.first_name} {model.last_name}")
+    else:
+        print(f"No models found for Magazine {magazine_name}")
