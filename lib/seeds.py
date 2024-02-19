@@ -14,12 +14,22 @@ def seed_data():
         print("Seed data already exists. Skipping.")
         return
     
-    
+
     agency1 = ModelAgency(name='Elite Models')
     agency2 = ModelAgency(name='Top Models')
     agency3 = ModelAgency(name='Global Talents')
     session.add_all([agency1, agency2,agency3])
     session.commit()
+
+    model1 = Model(first_name='Joy', last_name='Vheey', agency=agency1, local_magazine=None, photo_shoots=15)
+    model2 = Model(first_name='Jane', last_name='Smith', agency=agency2, local_magazine=None, photo_shoots=5)
+    model3 = Model(first_name='John', last_name='Makani', agency=agency3, local_magazine=None, photo_shoots=7)
+    model4 = Model(first_name='Precious', last_name='Yelsha', agency=agency2, local_magazine=None, photo_shoots=17)
+    model5 = Model(first_name='David', last_name='Charo', agency=agency1, local_magazine=None, photo_shoots=3)
+    model6 = Model(first_name='Emily', last_name='Clark', agency=agency3, local_magazine=None, photo_shoots=9)
+    session.add_all([model1, model2, model3, model4, model5, model6])
+    session.commit()
+
 
 
 
