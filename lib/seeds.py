@@ -30,6 +30,12 @@ def seed_data():
     session.add_all([model1, model2, model3, model4, model5, model6])
     session.commit()
 
+    magazine1 = LocalMagazine(name='Fashion Weekly', model=model1)
+    magazine2 = LocalMagazine(name='Glamour Magazine', model=model2)
+    magazine3 = LocalMagazine(name='Style Magazine', model=model3)
+    session.add_all([magazine1, magazine2,magazine3])
+    session.commit()
+
 
 
 
