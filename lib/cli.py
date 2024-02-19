@@ -28,3 +28,13 @@ def list_models_for_magazine():
             print(f"Model ID: {model.id}, Name: {model.first_name} {model.last_name}")
     else:
         print(f"No models found for Magazine {magazine_name}")
+
+def list_eligible_models():
+    eligible_models = get_eligible_models()
+
+    if eligible_models:
+        print("Eligible Models for International Magazines:")
+        for model in eligible_models:
+            print(f"{model.first_name} {model.last_name} is eligible for international magazines.")
+    else:
+        print("No eligible models found for international magazines.")
