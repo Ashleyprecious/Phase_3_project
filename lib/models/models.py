@@ -18,3 +18,12 @@ class Model(Base):
     agency = relationship('ModelAgency', back_populates='models')
     local_magazine = relationship('LocalMagazine', back_populates='model', uselist=False)
     photo_shoots = Column(Integer)
+    
+class LocalMagazine(Base):
+    __tablename__ = 'local_magazine'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    model_id = Column(Integer, ForeignKey('model.id'))
+    model = relationship('Model', back_populates='local_magazine')
+
+ 
