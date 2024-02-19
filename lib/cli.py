@@ -56,3 +56,11 @@ def get_models_for_magazine(magazine_name):
         .all()
     )
     return models
+
+def get_eligible_models():
+    eligible_models = (
+        session.query(Model)
+        .filter(Model.photo_shoots >= 10)
+        .all()
+    )
+    return eligible_models
