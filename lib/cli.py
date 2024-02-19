@@ -38,3 +38,12 @@ def list_eligible_models():
             print(f"{model.first_name} {model.last_name} is eligible for international magazines.")
     else:
         print("No eligible models found for international magazines.")
+
+def get_models_under_agency(agency_name):
+    models = (
+        session.query(Model)
+        .join(ModelAgency)
+        .filter(ModelAgency.name == agency_name)
+        .all()
+    )
+    return models
