@@ -39,6 +39,33 @@ def list_eligible_models():
     else:
         print("No eligible models found for international magazines.")
 
+def create_new_model():
+    print("Create a new model:")
+    first_name = input("Enter the first name: ")
+    last_name = input("Enter the last name: ")
+    agency_name = input("Enter the Model Agency's name: ")
+    local_magazine_name = input("Enter the Magazine's name (or leave empty for none): ")
+    photo_shoots = int(input("Enter the number of photo shoots: "))
+
+    agency = session.query(ModelAgency).filter_by(name=agency_name).first()
+
+    if not agency:
+        print(f"No such Model Agency: {agency_name}")
+        return
+
+    local_magazine = None
+    if local_magazine_name:
+        local_magazine = session.query(LocalMagazine).filter_by(name=local_magazine_name).first()
+        if not local_magazine:
+            print(f"No such Magazine: {local_magazine_name}")
+            return
+
+    new_model = Model(first_name=first_name, last_name=last_name, agency=agency, local_magazine=local_magazine, photo_shoots=photo_shoots)
+    session.add(new_model)
+    session.commit()
+
+    print(f"New model {first_name} {last_name} created successfully!")
+
 def get_models_under_agency(agency_name):
     models = (
         session.query(Model)
