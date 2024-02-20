@@ -66,6 +66,46 @@ def create_new_model():
 
     print(f"New model {first_name} {last_name} created successfully!")
 
+def update_model():
+    model_id = int(input("Enter the ID of the model you want to update: "))
+    model = session.query(Model).filter_by(id=model_id).first()
+
+    if not model:
+        print(f"No model found with ID {model_id}")
+        return
+
+    print(f"Updating model: {model.first_name} {model.last_name}")
+
+    first_name = input("Enter the updated first name (or leave empty to keep current): ")
+    last_name = input("Enter the updated last name (or leave empty to keep current): ")
+    agency_name = input("Enter the updated Model Agency's name (or leave empty to keep current): ")
+    local_magazine_name = input("Enter the updated Magazine's name (or leave empty for none): ")
+    photo_shoots = int(input("Enter the updated number of photo shoots: "))
+
+    if first_name:
+        model.first_name = first_name
+    if last_name:
+        model.last_name = last_name
+
+    if agency_name:
+        agency = session.query(ModelAgency).filter_by(name=agency_name).first()
+        if not agency:
+            print(f"No such Model Agency: {agency_name}")
+            return
+        model.agency = agency
+
+    if local_magazine_name:
+        local_magazine = session.query(LocalMagazine).filter_by(name=local_magazine_name).first()
+        if not local_magazine:
+            print(f"No such Magazine: {local_magazine_name}")
+            return
+        model.local_magazine = local_magazine
+
+    model.photo_shoots = photo_shoots
+    session.commit()
+
+    print(f"Model {model_id} updated successfully!")
+
 def get_models_under_agency(agency_name):
     models = (
         session.query(Model)
